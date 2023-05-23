@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { increment,decrement } from '../../store/slice/counter-slice';
 import "./style.scss"
@@ -11,12 +11,12 @@ const Counter = () => {
 
   const handleIncrement = () => {
     dispatch(increment());
-
-    if (count === 30) {
-      setShowModal(true);
-    }
   };
-
+  useEffect(() => {
+      if (count === 30) {
+        setShowModal(true);
+      }
+    }, [count]);
   const handleDecrement = () => {
     dispatch(decrement());
     setShowModal(false);
